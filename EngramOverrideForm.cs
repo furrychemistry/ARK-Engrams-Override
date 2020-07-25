@@ -105,7 +105,7 @@ namespace ArkEngrams
 			List<string> unlocks = new List<string>();
 			List<string> overrides = new List<string>();
 
-			ARKDataSet.EngramsDataTable tbl = null; //engramsViewTableAdapter.GetGameiniChanges();
+			ARKDataSet.EngramsDataTable tbl = engramsTableAdapter.GetDataByEngramOverrides();
 
 			foreach (ARKDataSet.EngramsRow row in tbl)
 			{

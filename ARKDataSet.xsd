@@ -125,6 +125,16 @@ SELECT EngramIndex, EngramClassName, FriendlyName, ArkCost, MyCost, UseMyCost, A
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+              <DbSource ConnectionRef="DBConn (Settings)" DbObjectName="ARK.dbo.Engrams" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByEngramOverrides" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByEngramOverrides" GeneratorSourceName="FillByEngramOverrides" GetMethodModifier="Public" GetMethodName="GetDataByEngramOverrides" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByEngramOverrides" UserSourceName="FillByEngramOverrides">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT * FROM dbo.Engrams
+WHERE (UseMyCost = 1) OR (UseMyLevel = 1) OR (UseAutoUnlockLevel = 1) OR (RemovePrerequisites = 1) OR (Hidden = 1)
+ ORDER BY ArkLevel, FriendlyName</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
             </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EngramCategoriesTableAdapter" GeneratorDataComponentClassName="EngramCategoriesTableAdapter" Name="EngramCategories" UserDataComponentName="EngramCategoriesTableAdapter">
@@ -188,7 +198,7 @@ SELECT ID, CategoryName, Notes FROM EngramCategories WHERE (ID = @ID) ORDER BY C
   <xs:element name="ARKDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ARKDataSet" msprop:Generator_UserDSName="ARKDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Engrams" msprop:Generator_TableClassName="EngramsDataTable" msprop:Generator_TableVarName="tableEngrams" msprop:Generator_RowChangedName="EngramsRowChanged" msprop:Generator_TablePropName="Engrams" msprop:Generator_RowDeletingName="EngramsRowDeleting" msprop:Generator_RowChangingName="EngramsRowChanging" msprop:Generator_RowEvHandlerName="EngramsRowChangeEventHandler" msprop:Generator_RowDeletedName="EngramsRowDeleted" msprop:Generator_RowClassName="EngramsRow" msprop:Generator_UserTableName="Engrams" msprop:Generator_RowEvArgName="EngramsRowChangeEvent">
+        <xs:element name="Engrams" msprop:Generator_TableClassName="EngramsDataTable" msprop:Generator_TableVarName="tableEngrams" msprop:Generator_TablePropName="Engrams" msprop:Generator_RowDeletingName="EngramsRowDeleting" msprop:Generator_RowChangingName="EngramsRowChanging" msprop:Generator_RowEvHandlerName="EngramsRowChangeEventHandler" msprop:Generator_RowDeletedName="EngramsRowDeleted" msprop:Generator_UserTableName="Engrams" msprop:Generator_RowChangedName="EngramsRowChanged" msprop:Generator_RowEvArgName="EngramsRowChangeEvent" msprop:Generator_RowClassName="EngramsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="EngramIndex" msprop:Generator_ColumnVarNameInTable="columnEngramIndex" msprop:Generator_ColumnPropNameInRow="EngramIndex" msprop:Generator_ColumnPropNameInTable="EngramIndexColumn" msprop:Generator_UserColumnName="EngramIndex" type="xs:int" />
@@ -220,7 +230,7 @@ SELECT ID, CategoryName, Notes FROM EngramCategories WHERE (ID = @ID) ORDER BY C
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="EngramCategories" msprop:Generator_TableClassName="EngramCategoriesDataTable" msprop:Generator_TableVarName="tableEngramCategories" msprop:Generator_TablePropName="EngramCategories" msprop:Generator_RowDeletingName="EngramCategoriesRowDeleting" msprop:Generator_RowChangingName="EngramCategoriesRowChanging" msprop:Generator_RowEvHandlerName="EngramCategoriesRowChangeEventHandler" msprop:Generator_RowDeletedName="EngramCategoriesRowDeleted" msprop:Generator_UserTableName="EngramCategories" msprop:Generator_RowChangedName="EngramCategoriesRowChanged" msprop:Generator_RowEvArgName="EngramCategoriesRowChangeEvent" msprop:Generator_RowClassName="EngramCategoriesRow">
+        <xs:element name="EngramCategories" msprop:Generator_TableClassName="EngramCategoriesDataTable" msprop:Generator_TableVarName="tableEngramCategories" msprop:Generator_RowChangedName="EngramCategoriesRowChanged" msprop:Generator_TablePropName="EngramCategories" msprop:Generator_RowDeletingName="EngramCategoriesRowDeleting" msprop:Generator_RowChangingName="EngramCategoriesRowChanging" msprop:Generator_RowEvHandlerName="EngramCategoriesRowChangeEventHandler" msprop:Generator_RowDeletedName="EngramCategoriesRowDeleted" msprop:Generator_RowClassName="EngramCategoriesRow" msprop:Generator_UserTableName="EngramCategories" msprop:Generator_RowEvArgName="EngramCategoriesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -254,7 +264,7 @@ SELECT ID, CategoryName, Notes FROM EngramCategories WHERE (ID = @ID) ORDER BY C
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_Engrams_EngramCategories" msdata:parent="EngramCategories" msdata:child="Engrams" msdata:parentkey="ID" msdata:childkey="CategoryID" msprop:Generator_UserChildTable="Engrams" msprop:Generator_ChildPropName="GetEngramsRows" msprop:Generator_UserRelationName="FK_Engrams_EngramCategories" msprop:Generator_RelationVarName="relationFK_Engrams_EngramCategories" msprop:Generator_UserParentTable="EngramCategories" msprop:Generator_ParentPropName="EngramCategoriesRow" />
+      <msdata:Relationship name="FK_Engrams_EngramCategories" msdata:parent="EngramCategories" msdata:child="Engrams" msdata:parentkey="ID" msdata:childkey="CategoryID" msprop:Generator_UserChildTable="Engrams" msprop:Generator_ChildPropName="GetEngramsRows" msprop:Generator_UserRelationName="FK_Engrams_EngramCategories" msprop:Generator_ParentPropName="EngramCategoriesRow" msprop:Generator_RelationVarName="relationFK_Engrams_EngramCategories" msprop:Generator_UserParentTable="EngramCategories" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
