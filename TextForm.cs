@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ArkEngrams
 {
-	public partial class GetGameiniTextForm : Form
+	public partial class TextForm : Form
 	{
-		public GetGameiniTextForm()
+		public TextForm()
 		{
 			InitializeComponent();
 		}

@@ -1,6 +1,6 @@
 ﻿namespace ArkEngrams
 {
-	partial class GetGameiniTextForm
+	partial class TextForm
 	{
 		/// <summary>
 		/// Required designer variable.

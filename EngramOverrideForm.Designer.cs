@@ -42,6 +42,9 @@
 			this.engramsBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.engramCategoriesTableAdapter = new ArkEngrams.ARKDataSetTableAdapters.EngramCategoriesTableAdapter();
 			this.engramsTableAdapter = new ArkEngrams.ARKDataSetTableAdapters.EngramsTableAdapter();
+			this.chkAllowAddDelete = new System.Windows.Forms.CheckBox();
+			this.btnRequery = new System.Windows.Forms.Button();
+			this.btnReloadCategories = new System.Windows.Forms.Button();
 			this.engramIndexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.engramClassNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.categoryIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -56,7 +59,6 @@
 			this.useAutoUnlockLevelDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.removePrerequisitesDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.hiddenDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.chkAllowAddDelete = new System.Windows.Forms.CheckBox();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.engramCategoriesBindingSource)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.aRKDataSet)).BeginInit();
@@ -66,7 +68,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(1, 7);
+			this.label1.Location = new System.Drawing.Point(1, 29);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(49, 13);
 			this.label1.TabIndex = 2;
@@ -76,21 +78,21 @@
 			// 
 			this.cmbSelectedCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbSelectedCategory.FormattingEnabled = true;
-			this.cmbSelectedCategory.Location = new System.Drawing.Point(56, 4);
+			this.cmbSelectedCategory.Location = new System.Drawing.Point(57, 26);
 			this.cmbSelectedCategory.Name = "cmbSelectedCategory";
-			this.cmbSelectedCategory.Size = new System.Drawing.Size(162, 21);
+			this.cmbSelectedCategory.Size = new System.Drawing.Size(151, 21);
 			this.cmbSelectedCategory.TabIndex = 3;
 			this.cmbSelectedCategory.TabStop = false;
 			this.cmbSelectedCategory.SelectedIndexChanged += new System.EventHandler(this.cmbSelectedCategory_SelectedIndexChanged);
 			// 
 			// btnSaveChanges
 			// 
-			this.btnSaveChanges.Location = new System.Drawing.Point(224, 3);
+			this.btnSaveChanges.Location = new System.Drawing.Point(67, 53);
 			this.btnSaveChanges.Name = "btnSaveChanges";
-			this.btnSaveChanges.Size = new System.Drawing.Size(96, 23);
+			this.btnSaveChanges.Size = new System.Drawing.Size(57, 23);
 			this.btnSaveChanges.TabIndex = 4;
 			this.btnSaveChanges.TabStop = false;
-			this.btnSaveChanges.Text = "Save Changes";
+			this.btnSaveChanges.Text = "Save";
 			this.btnSaveChanges.UseVisualStyleBackColor = true;
 			this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
 			// 
@@ -98,7 +100,7 @@
 			// 
 			this.chkTopMost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.chkTopMost.AutoSize = true;
-			this.chkTopMost.Location = new System.Drawing.Point(861, 7);
+			this.chkTopMost.Location = new System.Drawing.Point(861, 2);
 			this.chkTopMost.Name = "chkTopMost";
 			this.chkTopMost.Size = new System.Drawing.Size(68, 17);
 			this.chkTopMost.TabIndex = 5;
@@ -109,9 +111,8 @@
 			// 
 			// label2
 			// 
-			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(640, 8);
+			this.label2.Location = new System.Drawing.Point(1, 3);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(53, 13);
 			this.label2.TabIndex = 6;
@@ -119,8 +120,7 @@
 			// 
 			// txtFormTitle
 			// 
-			this.txtFormTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.txtFormTitle.Location = new System.Drawing.Point(699, 4);
+			this.txtFormTitle.Location = new System.Drawing.Point(57, 0);
 			this.txtFormTitle.Name = "txtFormTitle";
 			this.txtFormTitle.Size = new System.Drawing.Size(151, 20);
 			this.txtFormTitle.TabIndex = 7;
@@ -130,7 +130,7 @@
 			// 
 			// btnGetGameiniText
 			// 
-			this.btnGetGameiniText.Location = new System.Drawing.Point(326, 3);
+			this.btnGetGameiniText.Location = new System.Drawing.Point(130, 53);
 			this.btnGetGameiniText.Name = "btnGetGameiniText";
 			this.btnGetGameiniText.Size = new System.Drawing.Size(105, 23);
 			this.btnGetGameiniText.TabIndex = 8;
@@ -166,9 +166,9 @@
             this.removePrerequisitesDataGridViewCheckBoxColumn,
             this.hiddenDataGridViewCheckBoxColumn});
 			this.dataGridView1.DataSource = this.engramsBindingSource;
-			this.dataGridView1.Location = new System.Drawing.Point(0, 30);
+			this.dataGridView1.Location = new System.Drawing.Point(0, 82);
 			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.Size = new System.Drawing.Size(929, 490);
+			this.dataGridView1.Size = new System.Drawing.Size(929, 438);
 			this.dataGridView1.TabIndex = 9;
 			// 
 			// engramCategoriesBindingSource
@@ -193,6 +193,39 @@
 			// engramsTableAdapter
 			// 
 			this.engramsTableAdapter.ClearBeforeFill = true;
+			// 
+			// chkAllowAddDelete
+			// 
+			this.chkAllowAddDelete.AutoSize = true;
+			this.chkAllowAddDelete.Location = new System.Drawing.Point(214, 2);
+			this.chkAllowAddDelete.Name = "chkAllowAddDelete";
+			this.chkAllowAddDelete.Size = new System.Drawing.Size(109, 17);
+			this.chkAllowAddDelete.TabIndex = 10;
+			this.chkAllowAddDelete.Text = "Allow Add/Delete";
+			this.chkAllowAddDelete.UseVisualStyleBackColor = true;
+			this.chkAllowAddDelete.CheckedChanged += new System.EventHandler(this.chkAllowAddDelete_CheckedChanged);
+			// 
+			// btnRequery
+			// 
+			this.btnRequery.Location = new System.Drawing.Point(4, 53);
+			this.btnRequery.Name = "btnRequery";
+			this.btnRequery.Size = new System.Drawing.Size(57, 23);
+			this.btnRequery.TabIndex = 11;
+			this.btnRequery.TabStop = false;
+			this.btnRequery.Text = "Requery";
+			this.btnRequery.UseVisualStyleBackColor = true;
+			this.btnRequery.Click += new System.EventHandler(this.btnRequery_Click);
+			// 
+			// btnReloadCategories
+			// 
+			this.btnReloadCategories.Location = new System.Drawing.Point(214, 25);
+			this.btnReloadCategories.Name = "btnReloadCategories";
+			this.btnReloadCategories.Size = new System.Drawing.Size(109, 23);
+			this.btnReloadCategories.TabIndex = 12;
+			this.btnReloadCategories.TabStop = false;
+			this.btnReloadCategories.Text = "Reload Categories";
+			this.btnReloadCategories.UseVisualStyleBackColor = true;
+			this.btnReloadCategories.Click += new System.EventHandler(this.btnReloadCategories_Click);
 			// 
 			// engramIndexDataGridViewTextBoxColumn
 			// 
@@ -226,11 +259,11 @@
 			// 
 			// friendlyNameDataGridViewTextBoxColumn
 			// 
-			this.friendlyNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
 			this.friendlyNameDataGridViewTextBoxColumn.DataPropertyName = "FriendlyName";
 			this.friendlyNameDataGridViewTextBoxColumn.DividerWidth = 4;
 			this.friendlyNameDataGridViewTextBoxColumn.HeaderText = "Name";
 			this.friendlyNameDataGridViewTextBoxColumn.Name = "friendlyNameDataGridViewTextBoxColumn";
+			this.friendlyNameDataGridViewTextBoxColumn.Width = 208;
 			// 
 			// arkCostDataGridViewTextBoxColumn
 			// 
@@ -308,31 +341,22 @@
 			this.hiddenDataGridViewCheckBoxColumn.Name = "hiddenDataGridViewCheckBoxColumn";
 			this.hiddenDataGridViewCheckBoxColumn.Width = 50;
 			// 
-			// chkAllowAddDelete
-			// 
-			this.chkAllowAddDelete.AutoSize = true;
-			this.chkAllowAddDelete.Location = new System.Drawing.Point(525, 6);
-			this.chkAllowAddDelete.Name = "chkAllowAddDelete";
-			this.chkAllowAddDelete.Size = new System.Drawing.Size(109, 17);
-			this.chkAllowAddDelete.TabIndex = 10;
-			this.chkAllowAddDelete.Text = "Allow Add/Delete";
-			this.chkAllowAddDelete.UseVisualStyleBackColor = true;
-			this.chkAllowAddDelete.CheckedChanged += new System.EventHandler(this.chkAllowAddDelete_CheckedChanged);
-			// 
 			// EngramOverrideForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(931, 520);
-			this.Controls.Add(this.chkAllowAddDelete);
-			this.Controls.Add(this.dataGridView1);
-			this.Controls.Add(this.btnGetGameiniText);
-			this.Controls.Add(this.txtFormTitle);
-			this.Controls.Add(this.label2);
-			this.Controls.Add(this.chkTopMost);
-			this.Controls.Add(this.btnSaveChanges);
+			this.Controls.Add(this.btnRequery);
+			this.Controls.Add(this.btnReloadCategories);
 			this.Controls.Add(this.cmbSelectedCategory);
 			this.Controls.Add(this.label1);
+			this.Controls.Add(this.chkTopMost);
+			this.Controls.Add(this.txtFormTitle);
+			this.Controls.Add(this.label2);
+			this.Controls.Add(this.chkAllowAddDelete);
+			this.Controls.Add(this.dataGridView1);
+			this.Controls.Add(this.btnSaveChanges);
+			this.Controls.Add(this.btnGetGameiniText);
 			this.Name = "EngramOverrideForm";
 			this.Text = "ARK Engrams";
 			this.Load += new System.EventHandler(this.EngramOverrideForm_Load);
@@ -359,6 +383,9 @@
 		private System.Windows.Forms.BindingSource engramCategoriesBindingSource;
 		private ARKDataSetTableAdapters.EngramCategoriesTableAdapter engramCategoriesTableAdapter;
 		private ARKDataSetTableAdapters.EngramsTableAdapter engramsTableAdapter;
+		private System.Windows.Forms.CheckBox chkAllowAddDelete;
+		private System.Windows.Forms.Button btnRequery;
+		private System.Windows.Forms.Button btnReloadCategories;
 		private System.Windows.Forms.DataGridViewTextBoxColumn engramIndexDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn engramClassNameDataGridViewTextBoxColumn;
 		private System.Windows.Forms.DataGridViewComboBoxColumn categoryIDDataGridViewTextBoxColumn;
@@ -373,6 +400,5 @@
 		private System.Windows.Forms.DataGridViewCheckBoxColumn useAutoUnlockLevelDataGridViewCheckBoxColumn;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn removePrerequisitesDataGridViewCheckBoxColumn;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn hiddenDataGridViewCheckBoxColumn;
-		private System.Windows.Forms.CheckBox chkAllowAddDelete;
 	}
 }

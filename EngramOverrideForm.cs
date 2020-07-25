@@ -35,31 +35,9 @@ namespace ArkEngrams
 		}
 
 		public EngramOverrideForm()
-		{
-			InitializeComponent();
-		}
+			=> InitializeComponent();
 
-		private void EngramOverrideForm_Load(object sender, EventArgs e)
-		{
-			engramCategoriesTableAdapter.Fill(aRKDataSet.EngramCategories);
-
-			ComboBox.ObjectCollection cmbCategoryID_Items = cmbSelectedCategory.Items;
-			ARKDataSet.EngramCategoriesDataTable categories = new ARKDataSet.EngramCategoriesDataTable();
-			engramCategoriesTableAdapter.Fill(categories);
-
-			cmbCategoryID_Items.Add(EngramCategoryEntry.ShowAll);
-
-			foreach (ARKDataSet.EngramCategoriesRow row in categories)
-				cmbCategoryID_Items.Add(new EngramCategoryEntry(row));
-
-			cmbSelectedCategory.SelectedIndex = 0;
-			chkAllowAddDelete.Checked = false;
-
-			aRKDataSet.WriteXmlSchema(@"V:\ARK.xsd");
-			aRKDataSet.WriteXml(@"V:\ARK.xml");
-		}
-
-		private void btnSaveChanges_Click(object sender, EventArgs e)
+		public void SaveChanges()
 		{
 			try
 			{
@@ -72,14 +50,15 @@ namespace ArkEngrams
 				if (changes != null)
 					engramsTableAdapter.Adapter.Update(changes);
 
-				cmbSelectedCategory_SelectedIndexChanged(null, null);
+				RequeryEngrams();
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message);
 			}
 		}
-		private void cmbSelectedCategory_SelectedIndexChanged(object sender, EventArgs e)
+
+		public void RequeryEngrams()
 		{
 			try
 			{
@@ -98,17 +77,25 @@ namespace ArkEngrams
 			}
 		}
 
-		private void chkTopMost_CheckedChanged(object sender, EventArgs e)
+		public void RequeryCategories()
 		{
-			TopMost = chkTopMost.Checked;
+			object selected = cmbSelectedCategory.SelectedItem; // Keep as object for null coalescing.
+			ComboBox.ObjectCollection items = cmbSelectedCategory.Items;
+			ARKDataSet.EngramCategoriesDataTable categories = new ARKDataSet.EngramCategoriesDataTable();
+
+			engramCategoriesTableAdapter.Fill(aRKDataSet.EngramCategories);
+			engramCategoriesTableAdapter.Fill(categories);
+			items.Clear();
+			items.Add(EngramCategoryEntry.ShowAll);
+
+			foreach (ARKDataSet.EngramCategoriesRow row in categories)
+				items.Add(new EngramCategoryEntry(row));
+
+			cmbSelectedCategory.SelectedItem = selected ?? EngramCategoryEntry.ShowAll;
+			// Engrams get requeried when --^ changes.
 		}
 
-		private void txtFormTitle_TextChanged(object sender, EventArgs e)
-		{
-			Text = txtFormTitle.Text;
-		}
-
-		private async void btnGetGameiniText_Click(object sender, EventArgs e)
+		public string GetGameiniText()
 		{
 			const string autoUnlockformat = "EngramEntryAutoUnlocks=(EngramClassName=\"{0}\",LevelToAutoUnlock={1})";
 			// {1} and {4} can be either "true" -or- "false"
@@ -135,17 +122,47 @@ namespace ArkEngrams
 			all.AddRange(unlocks);
 			all.AddRange(overrides);
 
-			GetGameiniTextForm frm = new GetGameiniTextForm();
-			frm.txtResult.Text = string.Join(Environment.NewLine, string.Join(Environment.NewLine, all));
+			return string.Join(Environment.NewLine, string.Join(Environment.NewLine, all));
+		}
+
+		public void SetAllowAddDelete(bool state)
+		{
+			dataGridView1.AllowUserToAddRows = state;
+			dataGridView1.AllowUserToDeleteRows = state;
+		}
+
+		private void EngramOverrideForm_Load(object sender, EventArgs e)
+		{
+			RequeryCategories(); // Also requeries engrams.
+		}
+
+		private void btnSaveChanges_Click(object sender, EventArgs e)
+			=> SaveChanges();
+
+		private void cmbSelectedCategory_SelectedIndexChanged(object sender, EventArgs e)
+			=> RequeryEngrams();
+
+		private void chkTopMost_CheckedChanged(object sender, EventArgs e)
+			=> TopMost = chkTopMost.Checked;
+
+		private void txtFormTitle_TextChanged(object sender, EventArgs e)
+			=> Text = txtFormTitle.Text;
+
+		private async void btnGetGameiniText_Click(object sender, EventArgs e)
+		{
+			TextForm frm = new TextForm();
+			frm.txtResult.Text = GetGameiniText();
 			frm.txtResult.Select(0, 0);
 			frm.Show();
 		}
 
 		private void chkAllowAddDelete_CheckedChanged(object sender, EventArgs e)
-		{
-			bool state = chkAllowAddDelete.Checked;
-			dataGridView1.AllowUserToAddRows = state;
-			dataGridView1.AllowUserToDeleteRows = state;
-		}
+			=> SetAllowAddDelete(chkAllowAddDelete.Checked);
+
+		private void btnRequery_Click(object sender, EventArgs e)
+			=> RequeryEngrams();
+
+		private void btnReloadCategories_Click(object sender, EventArgs e)
+			=> RequeryCategories();
 	}
 }

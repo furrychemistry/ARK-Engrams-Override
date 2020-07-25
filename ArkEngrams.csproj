@@ -62,19 +62,19 @@
     <Compile Include="EngramOverrideForm.Designer.cs">
       <DependentUpon>EngramOverrideForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GetGameiniTextForm.cs">
+    <Compile Include="TextForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GetGameiniTextForm.Designer.cs">
-      <DependentUpon>GetGameiniTextForm.cs</DependentUpon>
+    <Compile Include="TextForm.Designer.cs">
+      <DependentUpon>TextForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EngramOverrideForm.resx">
       <DependentUpon>EngramOverrideForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GetGameiniTextForm.resx">
-      <DependentUpon>GetGameiniTextForm.cs</DependentUpon>
+    <EmbeddedResource Include="TextForm.resx">
+      <DependentUpon>TextForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ARKDataSet.xsc">
       <DependentUpon>ARKDataSet.xsd</DependentUpon>
