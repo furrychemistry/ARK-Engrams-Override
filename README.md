@@ -1,25 +1,22 @@
 # Ark Engrams Override
- Tool to make 'Game.ini' entries for overriding engram settings.
+ Tool to make 'Game.ini' entries for overriding engram settings. Tools are great!
  
 Visual Studio 2019, Community
 
 Setup to use a local MSSQL database. You can change the 'DBConn' string in Properties\Settings.
+
 Changes could be made to work from an xml file, since DataSet supports it.
 
 Sql files included in Properties to create tables and data:
 *	Engrams table and data
 *	EngramCategories table and data
-NOTE: Database name is ARK, and there is no auto-increment on the primary keys by design.
+
+Database name is **ARK**. There is no auto-increment on the primary keys.
 
 To commit changes you make, you -have- to hit the 'Save Changes' button, by design.
 Could be modified to update changes as you end a row edit.
 
-I created categories to make filtering the engrams easier.
-It has no bearing on the game.
-
-
-
-I created this because I couldn't find a suitable tool.
+I created categories to make filtering the engrams easier. It has no bearing on the game.
 
 List of categories:
 * Addons
