@@ -335,7 +335,7 @@
 			this.Controls.Add(this.label1);
 			this.Name = "EngramOverrideForm";
 			this.Text = "ARK Engrams";
-			this.Load += new System.EventHandler(this.Form1_Load);
+			this.Load += new System.EventHandler(this.EngramOverrideForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.engramCategoriesBindingSource)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.aRKDataSet)).EndInit();

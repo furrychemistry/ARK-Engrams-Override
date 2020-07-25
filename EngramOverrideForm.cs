@@ -39,9 +39,9 @@ namespace ArkEngrams
 			InitializeComponent();
 		}
 
-		private void Form1_Load(object sender, EventArgs e)
+		private void EngramOverrideForm_Load(object sender, EventArgs e)
 		{
-			this.engramCategoriesTableAdapter.Fill(aRKDataSet.EngramCategories);
+			engramCategoriesTableAdapter.Fill(aRKDataSet.EngramCategories);
 
 			ComboBox.ObjectCollection cmbCategoryID_Items = cmbSelectedCategory.Items;
 			ARKDataSet.EngramCategoriesDataTable categories = new ARKDataSet.EngramCategoriesDataTable();
@@ -53,8 +53,10 @@ namespace ArkEngrams
 				cmbCategoryID_Items.Add(new EngramCategoryEntry(row));
 
 			cmbSelectedCategory.SelectedIndex = 0;
-			dataGridView1.Select();
 			chkAllowAddDelete.Checked = false;
+
+			aRKDataSet.WriteXmlSchema(@"V:\ARK.xsd");
+			aRKDataSet.WriteXml(@"V:\ARK.xml");
 		}
 
 		private void btnSaveChanges_Click(object sender, EventArgs e)
@@ -109,7 +111,7 @@ namespace ArkEngrams
 		private async void btnGetGameiniText_Click(object sender, EventArgs e)
 		{
 			const string autoUnlockformat = "EngramEntryAutoUnlocks=(EngramClassName=\"{0}\",LevelToAutoUnlock={1})";
-			// {1} and {4} => "true" OR "false"
+			// {1} and {4} can be either "true" -or- "false"
 			const string overrideFormat = "OverrideNamedEngramEntries=(EngramIndex={0},EngramHidden={1}," +
 				"EngramPointsCost={2},EngramLevelRequirement={3},RemoveEngramPreReq={4})";
 

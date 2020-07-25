@@ -1,0 +1,75 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="ARKDataSet" targetNamespace="http://tempuri.org/ARKDataSet.xsd" xmlns:mstns="http://tempuri.org/ARKDataSet.xsd" xmlns="http://tempuri.org/ARKDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="ARKDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Engrams">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EngramIndex" type="xs:int" />
+              <xs:element name="EngramClassName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FriendlyName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ArkCost" type="xs:int" />
+              <xs:element name="MyCost" type="xs:int" />
+              <xs:element name="UseMyCost" type="xs:boolean" />
+              <xs:element name="ArkLevel" type="xs:int" />
+              <xs:element name="MyLevel" type="xs:int" />
+              <xs:element name="UseMyLevel" type="xs:boolean" />
+              <xs:element name="AutoUnlockLevel" type="xs:decimal" />
+              <xs:element name="UseAutoUnlockLevel" type="xs:boolean" />
+              <xs:element name="RemovePrerequisites" type="xs:boolean" />
+              <xs:element name="Hidden" type="xs:boolean" />
+              <xs:element name="CategoryID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EngramCategories">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" type="xs:int" />
+              <xs:element name="CategoryName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Notes">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Engrams" />
+      <xs:field xpath="mstns:EngramIndex" />
+    </xs:unique>
+    <xs:unique name="EngramCategories_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:EngramCategories" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK_Engrams_EngramCategories" msdata:parent="EngramCategories" msdata:child="Engrams" msdata:parentkey="ID" msdata:childkey="CategoryID" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>
