@@ -1,5 +1,5 @@
 # Ark Engrams Override
- Tool to make 'Game.ini' entries for overriding engram settings. Tools are great when there are almost 600 engrams!
+ Tool I made to make 'Game.ini' entries for overriding engram settings. Tools are great when there are almost 600 engrams!
  
 Visual Studio 2019, Community
 
