@@ -1,7 +1,7 @@
 # Ark Engrams Override
- Tool I made to make 'Game.ini' entries for 'EngramEntryAutoUnlocks' and 'OverrideNamedEngramEntries'. Tools are great when there are almost 600 engrams!
+ I use this to make 'Game.ini' entries for 'EngramEntryAutoUnlocks' and 'OverrideNamedEngramEntries'. Tools are great when there are almost 600 engrams.
  
-Visual Studio 2019, Community
+Project is Visual Studio 2019 with Microsoft .Net Framework 4.7.2
 
 Setup to use a local MSSQL database. You can change the 'DBConn' string in Properties\Settings.
 
