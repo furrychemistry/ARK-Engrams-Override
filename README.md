@@ -13,13 +13,14 @@ Sql files included in Properties to create tables and data:
 
 Database name is **ARK**. There is no auto-increment on the primary keys.
 
-To commit changes you make, you -have- to hit the 'Save Changes' button, by design.
-Could be modified to update changes as you end a row edit.
+To accept changes, you -have- to hit the 'Save Changes' button, by design.
+
+Could be modified to update when you end a row edit.
 
 I created categories to make filtering the engrams easier. It has no bearing on the game.
 
 List of categories:
-* Addons
+* Addons  (Chair, Bench, etc.)
 * Ammo
 * Attatchments
 * Beds
