@@ -102,10 +102,14 @@ namespace ArkEngrams
 			const string overrideFormat = "OverrideNamedEngramEntries=(EngramIndex={0},EngramHidden={1}," +
 				"EngramPointsCost={2},EngramLevelRequirement={3},RemoveEngramPreReq={4})";
 
+			ARKDataSet.EngramsDataTable tbl = engramsTableAdapter.GetDataByEngramOverrides();
+
+			if (tbl is null)
+				return string.Empty;
+
 			List<string> unlocks = new List<string>();
 			List<string> overrides = new List<string>();
 
-			ARKDataSet.EngramsDataTable tbl = engramsTableAdapter.GetDataByEngramOverrides();
 
 			foreach (ARKDataSet.EngramsRow row in tbl)
 			{
